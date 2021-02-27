@@ -1,5 +1,6 @@
 module.exports = 
 
+
 function toReadable (n) {
     let read = {
     0: '',
@@ -38,8 +39,8 @@ function toReadable (n) {
 
   if (num.length === 3){
     hundreds = String(read[num.split('')[0]] + ' hundred')
-    if (num.split('').slice(-1, -1) == 0) {
-      ones = '';
+    if (num.split('').slice(-1 ) == 0 && num.split('').slice(-2).join('') != 10) {
+      ones = 0;
     }
   }
   
@@ -54,6 +55,7 @@ function toReadable (n) {
     } else {
       tenners = read[num.split('').slice(-2).join('') - num.split('').slice(-1)];
       ones = read[num.split('').slice(-1)];
+      
       if (num.split('').slice(-1) == 0) {
         ones = '';
       }
@@ -62,5 +64,13 @@ function toReadable (n) {
   } else if (num.length = 1) {
     num == 0 ? ones = 'zero' : ones = read[num];
   }
-    return (hundreds + ' ' + tenners +' '+ones)
+    if ( n <= 10 ){
+      return ones;
+    } else if (n > 10 && n <= 100) {
+      return ( tenners +' '+ones)
+    } else if (n > 100 && tenners == '') {
+      return (hundreds +' ' + ones)
+    } else {
+      return (hundreds +' '+tenners+' ' + ones)
+    }
 }
