@@ -1,7 +1,6 @@
 module.exports = 
-
-
 function toReadable (n) {
+    let str;
     let read = {
     0: '',
     1: 'one',
@@ -65,12 +64,13 @@ function toReadable (n) {
     num == 0 ? ones = 'zero' : ones = read[num];
   }
     if ( n <= 10 ){
-      return ones;
+      str = ones;
     } else if (n > 10 && n <= 100) {
-      return ( tenners +' '+ones)
+      str = tenners +' '+ones;
     } else if (n > 100 && tenners == '') {
-      return (hundreds +' ' + ones)
+      str = hundreds +' ' + ones;
     } else {
-      return (hundreds +' '+tenners+' ' + ones)
+      str = hundreds +' '+tenners+' ' + ones;
     }
+  return str.replace(/ +/g, ' ').trim();
 }
