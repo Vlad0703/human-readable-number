@@ -1,4 +1,4 @@
-module.exports = function toReadable (number) {
+module.exports = function toReadable (n) {
     let read = {
     
     1: 'one',
