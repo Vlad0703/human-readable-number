@@ -1,6 +1,8 @@
-module.exports = function toReadable (n) {
+module.exports = 
+
+function toReadable (n) {
     let read = {
-    
+    0: '',
     1: 'one',
     2: 'two',
     3: 'three',
@@ -36,12 +38,19 @@ module.exports = function toReadable (n) {
 
   if (num.length === 3){
     hundreds = String(read[num.split('')[0]] + ' hundred')
+    if (num.split('').slice(-1, -1) == 0) {
+      ones = '';
+    }
   }
   
   if (num.length >= 2) {
     if (num.split('').slice(-2).join('') < 20) {
       tenners = read[num.split('').slice(-2).join('')]
-      
+      if (num.split('').slice(-2, -1) == 0) {
+        tenners = '';
+        ones = read[num.split('').slice(-1)]
+      }
+
     } else {
       tenners = read[num.split('').slice(-2).join('') - num.split('').slice(-1)];
       ones = read[num.split('').slice(-1)];
